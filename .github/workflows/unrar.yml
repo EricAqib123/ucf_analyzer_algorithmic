@@ -8,8 +8,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download repository
-        uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v5
         with:
           lfs: true
 
@@ -20,8 +20,8 @@ jobs:
 
       - name: Extract RAR
         run: |
-          mkdir extracted
-          unrar x "ucf_analyzer_algorithmic.rar" extracted/
+          mkdir -p extracted
+          unrar x -o+ "myfile.rar" extracted/
 
       - name: Show extracted files
         run: |
