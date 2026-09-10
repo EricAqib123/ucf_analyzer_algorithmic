@@ -1,4 +1,4 @@
-name: Extract RAR
+name: Extract RAR and Commit
 
 on:
   workflow_dispatch:
@@ -12,17 +12,52 @@ jobs:
         uses: actions/checkout@v5
         with:
           lfs: true
+          fetch-depth: 0
 
       - name: Install unrar
         run: |
           sudo apt-get update
           sudo apt-get install -y unrar
 
+      - name: Find RAR file
+        run: |
+          RAR_FILE=$(find . -maxdepth 2 -type f -iname "*.rar" | head -n 1)
+
+          if [ -z "$RAR_FILE" ]; then
+            echo "ERROR: No RAR file found"
+            exit 1
+          fi
+
+          echo "Found: $RAR_FILE"
+          echo "RAR_FILE=$RAR_FILE" >> "$GITHUB_ENV"
+
       - name: Extract RAR
         run: |
+          rm -rf extracted
           mkdir -p extracted
-          unrar x -o+ "ucf_analyzer_algorithmic.rar" extracted/
 
-      - name: Show extracted files
+          unrar x -o+ "$RAR_FILE" extracted/
+
+      - name: Check extracted files
         run: |
-          ls -lah extracted
+          echo "Extracted size:"
+          du -sh extracted
+
+          echo "Files:"
+          find extracted -type f | head -50
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit extracted files
+        run: |
+          git add extracted/
+
+          if git diff --cached --quiet; then
+            echo "No new files to commit"
+          else
+            git commit -m "Extract RAR files"
+            git push
+          fi
