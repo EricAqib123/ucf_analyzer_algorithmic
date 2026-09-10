@@ -23,7 +23,7 @@ PAGES = (
 def configure_page():
     st.set_page_config(
         page_title="AI-Based Algorithmic Analyzer (UCF Model)",
-        page_icon=str(LOGO_PATH2)
+        page_icon=str(LOGO_PATH2),
         layout="wide",
     )
 
@@ -31,18 +31,18 @@ def configure_page():
 def render_header():
     col1, col2, col3 = st.columns([1, 4, 1])
     with col1:
-        st.image("str(LOGO_PATH)", width=80)
+        st.image(str(LOGO_PATH), width=80)
     with col2:
         st.markdown("<h1 style='text-align:center;'>AI-Based Algorithmic Analyzer(UCF)</h1>", unsafe_allow_html=True)
         st.markdown("<h4 style='text-align:center;'>Mehran University of Engineering & Technology</h4>", unsafe_allow_html=True)
         st.markdown("<h5 style='text-align:center;'>Jamshoro, Sindh, Pakistan</h5>", unsafe_allow_html=True)
     with col3:
-        st.image("str(LOGO_PATH)", width=80)
+        st.image(str(LOGO_PATH), width=80)
     st.markdown("---")
 
 
 def render_sidebar():
-    st.sidebar.image("str(LOGO_PATH2)", width=100)
+    st.sidebar.image(str(LOGO_PATH2), width=100)
     st.sidebar.title("AI Algorithm Analyzer")
     return st.sidebar.radio("Select Phase:", PAGES)
 
