@@ -3,61 +3,172 @@ name: Extract RAR and Commit
 on:
   workflow_dispatch:
 
+# Allow GitHub Actions to push changes to the repository
+permissions:
+  contents: write
+
 jobs:
   extract:
     runs-on: ubuntu-latest
 
     steps:
+
+      # --------------------------------------------------
+      # 1. Checkout repository and download Git LFS files
+      # --------------------------------------------------
       - name: Checkout repository
         uses: actions/checkout@v5
         with:
           lfs: true
           fetch-depth: 0
 
+      # --------------------------------------------------
+      # 2. Install unrar
+      # --------------------------------------------------
       - name: Install unrar
         run: |
           sudo apt-get update
           sudo apt-get install -y unrar
 
+      # --------------------------------------------------
+      # 3. Find the RAR file
+      # --------------------------------------------------
       - name: Find RAR file
+        shell: bash
         run: |
-          RAR_FILE=$(find . -maxdepth 2 -type f -iname "*.rar" | head -n 1)
+          echo "Searching for RAR file..."
+
+          RAR_FILE=$(find . -type f -iname "*.rar" \
+            -not -path "./.git/*" \
+            | head -n 1)
 
           if [ -z "$RAR_FILE" ]; then
-            echo "ERROR: No RAR file found"
+            echo "ERROR: No RAR file found!"
+            echo ""
+            echo "Files currently in repository:"
+            find . -maxdepth 3 -type f | head -100
             exit 1
           fi
 
-          echo "Found: $RAR_FILE"
+          echo "RAR file found:"
+          echo "$RAR_FILE"
+
           echo "RAR_FILE=$RAR_FILE" >> "$GITHUB_ENV"
 
+      # --------------------------------------------------
+      # 4. Show RAR information
+      # --------------------------------------------------
+      - name: Check RAR
+        run: |
+          echo "RAR file:"
+          ls -lh "$RAR_FILE"
+
+          echo ""
+          echo "RAR contents:"
+          unrar l "$RAR_FILE"
+
+      # --------------------------------------------------
+      # 5. Extract RAR
+      # --------------------------------------------------
       - name: Extract RAR
         run: |
+          echo "Extracting..."
+
           rm -rf extracted
           mkdir -p extracted
 
           unrar x -o+ "$RAR_FILE" extracted/
 
+      # --------------------------------------------------
+      # 6. Remove nested Git repositories
+      # --------------------------------------------------
+      # This prevents extracted folders containing .git
+      # from being treated as Git submodules.
+      # --------------------------------------------------
+      - name: Remove nested Git metadata
+        run: |
+          echo "Removing nested Git repositories..."
+
+          find extracted \
+            -type d \
+            -name ".git" \
+            -prune \
+            -exec rm -rf {} +
+
+          find extracted \
+            -type f \
+            -name ".gitmodules" \
+            -delete
+
+          find extracted \
+            -type f \
+            -name ".git" \
+            -delete
+
+      # --------------------------------------------------
+      # 7. Check extracted files
+      # --------------------------------------------------
       - name: Check extracted files
         run: |
-          echo "Extracted size:"
+          echo "================================"
+          echo "EXTRACTED SIZE"
+          echo "================================"
+
           du -sh extracted
 
-          echo "Files:"
-          find extracted -type f | head -50
+          echo ""
+          echo "================================"
+          echo "EXTRACTED FILES"
+          echo "================================"
 
+          find extracted -type f | head -100
+
+          echo ""
+          echo "================================"
+          echo "NUMBER OF FILES"
+          echo "================================"
+
+          find extracted -type f | wc -l
+
+      # --------------------------------------------------
+      # 8. Configure Git
+      # --------------------------------------------------
       - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+      # --------------------------------------------------
+      # 9. Add extracted files
+      # --------------------------------------------------
+      - name: Add extracted files
+        run: |
+          git add -A extracted/
+
+          echo "================================"
+          echo "FILES TO COMMIT"
+          echo "================================"
+
+          git status --short
+
+      # --------------------------------------------------
+      # 10. Commit and push
+      # --------------------------------------------------
       - name: Commit extracted files
         run: |
-          git add extracted/
-
           if git diff --cached --quiet; then
-            echo "No new files to commit"
+            echo "No changes to commit."
           else
             git commit -m "Extract RAR files"
-            git push
+            git push origin HEAD:main
           fi
+
+      # --------------------------------------------------
+      # 11. Final message
+      # --------------------------------------------------
+      - name: Complete
+        run: |
+          echo "================================"
+          echo "EXTRACTION COMPLETE"
+          echo "================================"
+          echo "The extracted files have been pushed to GitHub."
