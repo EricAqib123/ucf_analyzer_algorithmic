@@ -3,7 +3,6 @@ name: Extract RAR and Commit
 on:
   workflow_dispatch:
 
-# Allow GitHub Actions to push changes to the repository
 permissions:
   contents: write
 
@@ -13,81 +12,62 @@ jobs:
 
     steps:
 
-      # --------------------------------------------------
-      # 1. Checkout repository and download Git LFS files
-      # --------------------------------------------------
+      # ---------------------------------------------
+      # 1. Checkout repository
+      # ---------------------------------------------
       - name: Checkout repository
         uses: actions/checkout@v5
         with:
           lfs: true
           fetch-depth: 0
 
-      # --------------------------------------------------
-      # 2. Install unrar
-      # --------------------------------------------------
-      - name: Install unrar
+      # ---------------------------------------------
+      # 2. Install unrar and Git LFS
+      # ---------------------------------------------
+      - name: Install tools
         run: |
           sudo apt-get update
           sudo apt-get install -y unrar
+          git lfs install
 
-      # --------------------------------------------------
-      # 3. Find the RAR file
-      # --------------------------------------------------
+      # ---------------------------------------------
+      # 3. Find original RAR
+      # ---------------------------------------------
       - name: Find RAR file
         shell: bash
         run: |
-          echo "Searching for RAR file..."
-
           RAR_FILE=$(find . -type f -iname "*.rar" \
             -not -path "./.git/*" \
             | head -n 1)
 
           if [ -z "$RAR_FILE" ]; then
             echo "ERROR: No RAR file found!"
-            echo ""
-            echo "Files currently in repository:"
-            find . -maxdepth 3 -type f | head -100
             exit 1
           fi
 
-          echo "RAR file found:"
+          echo "Found RAR:"
           echo "$RAR_FILE"
 
           echo "RAR_FILE=$RAR_FILE" >> "$GITHUB_ENV"
 
-      # --------------------------------------------------
-      # 4. Show RAR information
-      # --------------------------------------------------
-      - name: Check RAR
-        run: |
-          echo "RAR file:"
-          ls -lh "$RAR_FILE"
-
-          echo ""
-          echo "RAR contents:"
-          unrar l "$RAR_FILE"
-
-      # --------------------------------------------------
-      # 5. Extract RAR
-      # --------------------------------------------------
+      # ---------------------------------------------
+      # 4. Extract RAR
+      # ---------------------------------------------
       - name: Extract RAR
         run: |
-          echo "Extracting..."
-
           rm -rf extracted
           mkdir -p extracted
 
+          echo "Extracting $RAR_FILE..."
+
           unrar x -o+ "$RAR_FILE" extracted/
 
-      # --------------------------------------------------
-      # 6. Remove nested Git repositories
-      # --------------------------------------------------
-      # This prevents extracted folders containing .git
-      # from being treated as Git submodules.
-      # --------------------------------------------------
+      # ---------------------------------------------
+      # 5. Remove nested Git metadata
+      # ---------------------------------------------
       - name: Remove nested Git metadata
         run: |
-          echo "Removing nested Git repositories..."
+          echo "Removing nested Git metadata..."
 
           find extracted \
             -type d \
@@ -105,9 +85,24 @@ jobs:
             -name ".git" \
             -delete
 
-      # --------------------------------------------------
+      # ---------------------------------------------
+      # 6. Find large files and configure Git LFS
+      # ---------------------------------------------
+      - name: Configure Git LFS for large files
+        shell: bash
+        run: |
+          echo "Finding files larger than 90 MB..."
+
+          find extracted -type f -size +90M -print
+
+          while IFS= read -r file; do
+            echo "Adding to Git LFS: $file"
+            git lfs track "$file"
+          done < <(find extracted -type f -size +90M)
+
+      # ---------------------------------------------
       # 7. Check extracted files
-      # --------------------------------------------------
+      # ---------------------------------------------
       - name: Check extracted files
         run: |
           echo "================================"
@@ -118,57 +113,77 @@ jobs:
 
           echo ""
           echo "================================"
-          echo "EXTRACTED FILES"
+          echo "LARGE FILES"
           echo "================================"
 
-          find extracted -type f | head -100
+          find extracted -type f -size +90M -exec ls -lh {} \;
 
           echo ""
           echo "================================"
-          echo "NUMBER OF FILES"
+          echo "GIT LFS TRACKED FILES"
           echo "================================"
 
-          find extracted -type f | wc -l
+          cat .gitattributes || true
 
-      # --------------------------------------------------
+      # ---------------------------------------------
       # 8. Configure Git
-      # --------------------------------------------------
+      # ---------------------------------------------
       - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      # --------------------------------------------------
-      # 9. Add extracted files
-      # --------------------------------------------------
+      # ---------------------------------------------
+      # 9. Add files
+      # ---------------------------------------------
       - name: Add extracted files
         run: |
+          git add .gitattributes
           git add -A extracted/
 
           echo "================================"
-          echo "FILES TO COMMIT"
+          echo "GIT STATUS"
           echo "================================"
 
           git status --short
 
-      # --------------------------------------------------
-      # 10. Commit and push
-      # --------------------------------------------------
-      - name: Commit extracted files
+      # ---------------------------------------------
+      # 10. Commit
+      # ---------------------------------------------
+      - name: Commit changes
         run: |
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
             git commit -m "Extract RAR files"
-            git push origin HEAD:main
           fi
 
-      # --------------------------------------------------
-      # 11. Final message
-      # --------------------------------------------------
-      - name: Complete
+      # ---------------------------------------------
+      # 11. Push Git LFS files
+      # ---------------------------------------------
+      - name: Push Git LFS files
+        run: |
+          git lfs push origin main --all
+
+      # ---------------------------------------------
+      # 12. Push Git repository
+      # ---------------------------------------------
+      - name: Push repository
+        run: |
+          git push origin HEAD:main
+
+      # ---------------------------------------------
+      # 13. Final check
+      # ---------------------------------------------
+      - name: Final LFS check
         run: |
           echo "================================"
-          echo "EXTRACTION COMPLETE"
+          echo "LFS FILES"
           echo "================================"
-          echo "The extracted files have been pushed to GitHub."
+
+          git lfs ls-files
+
+          echo ""
+          echo "================================"
+          echo "DONE"
+          echo "================================"
