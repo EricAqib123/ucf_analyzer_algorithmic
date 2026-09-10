@@ -1,6 +1,15 @@
+```python
 import warnings
-from gui.layout import configure_page, render_header, render_sidebar, apply_global_style
+
+from gui.layout import (
+    configure_page,
+    render_header,
+    render_sidebar,
+    apply_global_style,
+)
+
 from gui.state import init_session_state
+
 from gui.pages import home
 from gui.pages import classical_algorithm
 from gui.pages import machine_learning
@@ -14,6 +23,8 @@ from gui.pages import automl_selection
 from gui.pages import advanced_visualizations
 from gui.pages import ucf_formula_lab
 
+
+# Suppress expected numerical RuntimeWarnings
 for _msg in [
     "invalid value encountered in subtract",
     "invalid value encountered in scalar multiply",
@@ -24,8 +35,14 @@ for _msg in [
     "Degrees of freedom <= 0",
     "All-NaN slice encountered",
 ]:
-    warnings.filterwarnings("ignore", category=RuntimeWarning, message=_msg)
+    warnings.filterwarnings(
+        "ignore",
+        category=RuntimeWarning,
+        message=_msg,
+    )
 
+
+# Page routing
 ROUTES = {
     "Home": home.render,
     "Classical Algorithm": classical_algorithm.render,
@@ -38,7 +55,7 @@ ROUTES = {
     "About": about.render,
     "AutoML Selection": automl_selection.render,
     "Advanced Visualizations": advanced_visualizations.render,
-    "UCF Formula Lab": ucf_formula_lab.render
+    "UCF Formula Lab": ucf_formula_lab.render,
 }
 
 
@@ -47,9 +64,16 @@ def main():
     apply_global_style()
     init_session_state()
     render_header()
+
     page = render_sidebar()
-    ROUTES[page]()
+
+    if page in ROUTES:
+        ROUTES[page]()
+    else:
+        import streamlit as st
+        st.error(f"Unknown page: {page}")
 
 
 if __name__ == "__main__":
     main()
+```
