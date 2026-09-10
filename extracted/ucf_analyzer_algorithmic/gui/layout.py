@@ -3,7 +3,7 @@ import streamlit as st
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 LOGO_PATH = PROJECT_ROOT / "img" / "logo.png"
-LOGO_PATH2 = PROJECT_ROOT / "img" / "logo1.png"
+LOGO_PATH2 = PROJECT_ROOT / "img" / "LOGO1.png"
 PAGES = (
     "Home",
     "Classical Algorithm",
