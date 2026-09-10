@@ -23,7 +23,7 @@ PAGES = (
 def configure_page():
     st.set_page_config(
         page_title="AI-Based Algorithmic Analyzer (UCF Model)",
-        page_icon="./img/LOGO1.png"
+        page_icon="./img/logo1.png"
         layout="wide",
     )
 
