@@ -1,0 +1,8 @@
+streamlit
+psutil
+memory-profiler
+numpy
+pandas
+scikit-learn
+matplotlib
+dotenv
