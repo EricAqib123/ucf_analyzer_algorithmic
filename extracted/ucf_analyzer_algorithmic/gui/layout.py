@@ -3,7 +3,7 @@ import streamlit as st
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 LOGO_PATH = PROJECT_ROOT / "img" / "logo.png"
-LOGO_PATH2 = PROJECT_ROOT / "img" / "LOGO1.png"
+
 PAGES = (
     "Home",
     "Classical Algorithm",
@@ -23,7 +23,7 @@ PAGES = (
 def configure_page():
     st.set_page_config(
         page_title="AI-Based Algorithmic Analyzer (UCF Model)",
-        page_icon="LOGO_PATH2"
+        page_icon="./img/LOGO1.png"
         layout="wide",
     )
 
