@@ -1,5 +1,8 @@
+from pathlib import Path
 import streamlit as st
 
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+LOGO_PATH = PROJECT_ROOT / "img" / "logo.png"
 
 PAGES = (
     "Home",
