@@ -21,7 +21,7 @@ jobs:
       - name: Extract RAR
         run: |
           mkdir -p extracted
-          unrar x -o+ "myfile.rar" extracted/
+          unrar x -o+ "ucf_analyzer_algorithmic.rar" extracted/
 
       - name: Show extracted files
         run: |
