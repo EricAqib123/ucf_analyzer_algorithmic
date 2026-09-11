@@ -9,7 +9,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 IMG_DIR = PROJECT_ROOT / "img"
 
 LOGO_PATH = IMG_DIR / "logo.png"
-LOGO1_PATH2 = IMG_DIR / "logo1.png"
+LOGO1_PATH = IMG_DIR / "logo1.png"
 
 PAGES = (
     "Home",
@@ -29,7 +29,7 @@ PAGES = (
 def configure_page():
     st.set_page_config(
     page_title="AI-Based Algorithmic Analyzer (UCF Model)",
-    page_icon=str(LOGO1_PATH2) if LOGO1_PATH2.exists() else "🧠",
+    page_icon=str(LOGO1_PATH) if LOGO1_PATH.exists() else "🧠",
     layout="wide",
     )
 
@@ -66,7 +66,7 @@ def render_header():
             
 def render_sidebar():
     if LOGO1_PATH.exists():
-        st.sidebar.image(str(LOGO1_PATH2), width=100)
+        st.sidebar.image(str(LOGO1_PATH), width=100)
         st.sidebar.title("AI Algorithm Analyzer")
         return st.sidebar.radio("Select Phase:",PAGES,)
 
