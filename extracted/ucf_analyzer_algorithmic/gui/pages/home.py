@@ -35,6 +35,7 @@ from algorithms.cic_loader import load_cic_ids
 from gui import utlis
 
 
+
 def render():
 
         st.header("Welcome to AI-Based Algorithmic Analyzer")
@@ -77,9 +78,11 @@ def render():
         col3.metric("Evaluation Metrics", "10+")
 
         st.success("Use the sidebar to start experiments.")
-        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-        # st.markdown("---")
+        # ─────────────────────────────────────────────────────
+        # Dataset Download
+        # ─────────────────────────────────────────────────────
+        st.markdown("---")
         st.subheader("📦 Download Dataset")
         st.write("Download the CIC-IDS dataset to use with the Machine Learning phase.")
 
