@@ -77,34 +77,25 @@ def render():
         col3.metric("Evaluation Metrics", "10+")
 
         st.success("Use the sidebar to start experiments.")
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-        # ─────────────────────────────────────────────────────
-        # Dataset Download
-        # ─────────────────────────────────────────────────────
-        st.markdown("---")
-        st.subheader("📦 Download Dataset")
-        st.write("Download the CIC-IDS dataset to use with the Machine Learning phase.")
-
-        dataset_path = "extracted/ucf_analyzer_algorithmic/dataset.rar"
-        try:
-            import os
-            if os.path.exists(dataset_path):
-                with open(dataset_path, "rb") as f_ds:
-                    dataset_bytes = f_ds.read()
+        dataset_path = os.path.join(
+            BASE_DIR,
+            "extracted",
+            "ucf_analyzer_algorithmic",
+            "dataset.rar"
+        )
+        if os.path.exists(dataset_path):
+            with open(dataset_path, "rb") as f_ds:
+                dataset_bytes = f_ds.read()
                 st.download_button(
-                    label="⬇️ Download CIC-IDS Dataset (.rar)",
-                    data=dataset_bytes,
-                    file_name="dataset.rar",
-                    mime="application/octet-stream"
+                label="⬇️ Download CIC-IDS Dataset (.rar)",
+                data=dataset_bytes,
+                file_name="dataset.rar",
+                mime="application/vnd.rar",
                 )
-            else:
-                st.info(
-                    "Dataset file (`dataset.rar`) not found in the project root. "
-                    "Place it alongside `app.py` to enable this download."
-                )
-        except Exception as e:
-            st.warning(f"Could not load dataset file: {e}")
-
-    # =====================================================
-    # 1️⃣ CLASSICAL ALGORITHM
-    # =====================================================
+        else:
+            st.error(
+                f"Dataset not found.\n\n"
+                f"Expected location:\n`{dataset_path}`"
+            )
