@@ -94,8 +94,8 @@ def render_header():
         )
 
     with col3:
-        if LOGO_PATH.exists():
-            st.image(str(LOGO_PATH), width=80)
+        if UNVI_PATH.exists():
+            st.image(str(UNVI_PATH), width=80)
 
 
 # ============================================================
