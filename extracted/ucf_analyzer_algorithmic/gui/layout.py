@@ -107,8 +107,8 @@ def render_sidebar():
     # Sidebar should ALWAYS be created.
     # The logo is optional.
 
-    if LOGO1_PATH.exists():
-        st.sidebar.image(str(LOGO1_PATH), width=100)
+    if LOGO_PATH.exists():
+        st.sidebar.image(str(LOGO_PATH), width=100)
 
     st.sidebar.title("AI Algorithm Analyzer")
 
