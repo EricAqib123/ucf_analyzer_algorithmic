@@ -23,25 +23,12 @@ from gui.pages import automl_selection
 from gui.pages import advanced_visualizations
 from gui.pages import ucf_formula_lab
 
-# Suppress expected numerical runtime warnings
+# Suppress numerical runtime warnings
 
-for _msg in [
-"invalid value encountered in subtract",
-"invalid value encountered in scalar multiply",
-"invalid value encountered in double_scalars",
-"invalid value encountered in multiply",
-"divide by zero encountered",
-"Mean of empty slice",
-"Degrees of freedom <= 0",
-"All-NaN slice encountered",
-]:
 warnings.filterwarnings(
 "ignore",
 category=RuntimeWarning,
-message=_msg,
 )
-
-# Page routing
 
 ROUTES = {
 "Home": home.render,
@@ -70,7 +57,7 @@ page = render_sidebar()
 if page in ROUTES:
     ROUTES[page]()
 else:
-    st.error(f"Unknown page selected: {page}")
+    st.error("Unknown page selected: " + str(page))
 ```
 
 if **name** == "**main**":
