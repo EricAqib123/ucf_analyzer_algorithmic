@@ -1,107 +1,114 @@
-AI-Based Algorithmic Analyzer (UCF)
-Overview
+# AI-Based Algorithmic Analyzer (UCF)
 
-AI-Based Algorithmic Analyzer (UCF) is a Streamlit-based academic research and experimental platform for analyzing the practical performance and computational complexity of classical algorithms and machine-learning models.
+## Overview
 
-The system uses the Unified Complexity Function (UCF) approach and combines theoretical complexity analysis with empirical execution profiling.
+**AI-Based Algorithmic Analyzer (UCF)** is a Streamlit-based academic
+research and experimental platform for analyzing the practical
+performance and computational complexity of classical algorithms and
+machine-learning models.
 
-Main Measurements
-Execution time
-CPU utilization
-Memory usage
-Runtime behavior
-Algorithm/model execution steps
-Stability and determinism
-UCF score
-Total complexity
-Remainder/residual complexity
-Accuracy
-Precision
-Recall
-F1-score
-Matthews Correlation Coefficient (MCC)
-Balanced Accuracy
-Cohen's Kappa
-ROC-AUC where applicable
-Throughput
-Model size
-Practical space-complexity estimate
-Explainable AI results
-UCF Model
+The system uses the **Unified Complexity Function (UCF)** approach and
+combines theoretical complexity analysis with empirical execution
+profiling.
+
+### Main measurements
+
+-   Execution time
+-   CPU utilization
+-   Memory usage
+-   Runtime behavior
+-   Algorithm/model steps
+-   Stability and determinism
+-   UCF score
+-   Total complexity
+-   Remainder
+-   Accuracy, precision, recall and F1-score
+-   MCC, Balanced Accuracy and Cohen's Kappa
+-   ROC-AUC where applicable
+-   Throughput
+-   Model size
+-   Practical space complexity
+-   Explainable AI results
+
+## UCF Model
 
 The project uses the following UCF formulation:
 
+``` text
 f(u) = f(t) + p(s) - p(d)
-
+```
 
 Where:
 
-f(u) = Unified Complexity Function output
-f(t) = execution-time component
-p(s) = stability/sequence-related component
-p(d) = determinism/complexity-difference component
+-   `f(u)` = Unified Complexity Function output
+-   `f(t)` = execution-time component
+-   `p(s)` = stability/sequence-related component
+-   `p(d)` = determinism/complexity-difference component
 
-UCF results should be interpreted according to the implementation and experimental methodology of this project. UCF complements rather than replaces formal asymptotic analysis such as Big-O.
+UCF results should be interpreted according to the implementation and
+experimental methodology of this project. UCF complements rather than
+replaces formal asymptotic analysis such as Big-O.
 
-Main Features
-Classical Algorithm Analysis
+## Main Features
 
-The application provides practical profiling of classical algorithms, including:
+### Classical Algorithm Analysis
 
-Algorithm selection
-Input-size selection
-Execution-time measurement
-CPU monitoring
-RAM monitoring
-Peak heap measurement
-Step counting
-UCF calculation
-Big-O reference
-Complexity visualization
-Experiment-result storage
+The application provides practical profiling of classical algorithms,
+including:
+
+-   Algorithm selection
+-   Input-size selection
+-   Execution-time measurement
+-   CPU monitoring
+-   RAM monitoring
+-   Peak heap measurement
+-   Step counting
+-   UCF calculation
+-   Big-O reference
+-   Complexity visualization
+-   Experiment-result storage
 
 The current implementation includes Bubble Sort.
 
-Machine Learning Analysis
+### Machine Learning Analysis
 
 Supported models include:
 
-Decision Tree
-Random Forest
-Logistic Regression
-K-Nearest Neighbors
-Support Vector Machine
-Gradient Boosting
-XGBoost
-LightGBM
-AdaBoost
-Extra Trees
-Linear Discriminant Analysis
-Quadratic Discriminant Analysis
-MLP Neural Network
-Dataset Support
+1.  Decision Tree
+2.  Random Forest
+3.  Logistic Regression
+4.  K-Nearest Neighbors
+5.  Support Vector Machine
+6.  Gradient Boosting
+7.  XGBoost
+8.  LightGBM
+9.  AdaBoost
+10. Extra Trees
+11. Linear Discriminant Analysis
+12. Quadratic Discriminant Analysis
+13. MLP Neural Network
+
+### Dataset Support
 
 The application supports:
 
-Synthetic datasets
-CIC-IDS CSV data
-Custom CSV datasets
-Scikit-learn Iris
-Scikit-learn Wine
-Scikit-learn Breast Cancer
-Scikit-learn Digits
-MNIST subset
+-   Synthetic datasets
+-   CIC-IDS CSV data
+-   Custom CSV datasets
+-   Scikit-learn Iris
+-   Scikit-learn Wine
+-   Scikit-learn Breast Cancer
+-   Scikit-learn Digits
+-   MNIST subset
 
-For custom CSV files, the application can configure:
+For custom CSV files, the application can configure the target column,
+columns to drop, test split, and maximum training samples.
 
-Target column
-Columns to drop
-Test split
-Maximum training samples
-Application Pages
+## Application Pages
 
-The organized application contains the following pages:
+The organized application contains pages for:
 
+``` text
 Home
 Classical Algorithm
 Machine Learning
@@ -114,9 +121,12 @@ AutoML Selection
 Advanced Visualizations
 UCF Formula Lab
 About
+```
 
-Project Structure
-AI-Based-Algorithmic-Analyzer/
+## Project Structure
+
+``` text
+extracted/ucf_analyzer_aglorithmic/
 │
 ├── app.py
 ├── main.py
@@ -125,34 +135,15 @@ AI-Based-Algorithmic-Analyzer/
 ├── .env
 ├── .env.example
 ├── .gitignore
-├── LICENSE
 │
 ├── algorithms/
-│   ├── __init__.py
-│   └── ...
-│
 ├── experiments/
-│   ├── __init__.py
-│   └── ...
-│
 ├── profiler/
-│   ├── __init__.py
-│   └── ...
-│
 ├── ucf/
-│   ├── __init__.py
-│   └── ...
-│
 ├── xai/
-│   ├── __init__.py
-│   └── ...
-│
+├── ml_models/
 ├── dataset/
-│   └── ...
-│
 ├── img/
-│   ├── logo.png
-│   └── logo1.png
 │
 ├── gui/
 │   ├── __init__.py
@@ -160,7 +151,6 @@ AI-Based-Algorithmic-Analyzer/
 │   ├── state.py
 │   ├── utils.py
 │   ├── components.py
-│   │
 │   └── pages/
 │       ├── __init__.py
 │       ├── home.py
@@ -177,105 +167,104 @@ AI-Based-Algorithmic-Analyzer/
 │       └── about.py
 │
 └── ...
+```
 
-Module Responsibilities
-app.py
+## Module Responsibilities
 
-Main Streamlit entry point. It initializes the application, configures navigation, and calls the selected page.
+### `app.py`
 
-algorithms/
+Main Streamlit entry point. It should primarily initialize the
+application, configure navigation, and call the selected page.
 
-Contains classical algorithms, machine-learning model definitions, and algorithm-related components.
+### `algorithms/`
 
-experiments/
+Contains classical algorithms, ML model definitions, and dataset-loading
+components.
 
-Contains experiment execution, repeated-run logic, and experimental workflow components.
+### `experiments/`
 
-profiler/
+Contains experiment execution and repeated-run logic.
 
-Contains practical execution profiling such as execution time, CPU utilization, memory usage, and related measurements.
+### `profiler/`
 
-ucf/
+Contains practical execution profiling such as time, CPU, and memory
+measurements.
 
-Contains UCF calculation and related computational-complexity logic.
+### `ucf/`
 
-xai/
+Contains UCF calculation and related complexity logic.
 
-Contains Explainable AI functionality such as SHAP and LIME integrations.
+### `xai/`
 
-dataset/
+Contains Explainable AI functionality such as SHAP/LIME integrations.
 
-Contains dataset loading, generation, preprocessing, and dataset-related utilities.
+### `gui/`
 
-gui/
+Contains Streamlit presentation code. Common layout, state, utilities,
+components, and individual pages are separated here.
 
-Contains Streamlit presentation code. Common layout, state management, utilities, components, and individual application pages are separated here.
+## Environment Configuration
 
-Environment Configuration
+Create a `.env` file in the project root:
 
-Create a .env file in the project root if environment variables are required:
-
+``` env
 APP_ENV=development
 DEBUG=false
 
 OPENAI_API_KEY=
 GROQ_API_KEY=
-
+```
 
 Only configure variables that are actually required by the project.
 
-Never commit real API keys or credentials to GitHub.
+**Never commit real API keys to Git.**
 
-The .env.example file should contain placeholder values and can be committed safely.
+The `.env.example` file should contain placeholder values and can be
+committed safely.
 
-The .env file should be excluded through .gitignore:
+## Installation
 
-.env
+### 1. Create a virtual environment
 
-Installation
-1. Clone the Repository
-git clone <YOUR-GITHUB-REPOSITORY-URL>
-cd AI-Based-Algorithmic-Analyzer
+Windows:
 
-2. Create a Virtual Environment
-Windows
+``` bash
 python -m venv .venv
-
-
-Activate it:
-
-.venv\Scripts\activate
-
-Linux/macOS
-python3 -m venv .venv
-
+```
 
 Activate it:
 
-source .venv/bin/activate
+``` bash
+.venv\Scriptsctivate
+```
 
-3. Install Dependencies
-python -m pip install --upgrade pip
+### 2. Install dependencies
+
+``` bash
 pip install -r requirements.txt
+```
 
-4. Run the Application
+### 3. Run the application
 
-Run the application from the project root:
+Run from the **project root**:
 
-python -m streamlit run app.py
-
+``` bash
+streamlit run streamlit_app.py
+```
 
 You can also use:
 
-streamlit run app.py
+``` bash
+python -m streamlit run app.py
+```
 
+Do not run the application from inside the `gui` directory.
 
-Do not run the application from inside the gui directory.
-
-Experiment Workflow
+## Experiment Workflow
 
 The intended research workflow is:
 
+``` text
 Problem Definition
         ↓
 Literature Review
@@ -297,70 +286,82 @@ Statistical Analysis
 Visualization
         ↓
 Results & Evaluation
+```
 
-Performance Metrics
-UCF Metrics
-Metric	Meaning
-p(S)	Stability-related measure
-p(D)	Determinism-related measure
-f(u)	UCF score
-TC	Total complexity
-R	Complexity remainder
-f(t)	Time component
-g(M)	Memory component
-Steps	Execution-step measurement
-ML Metrics
-Accuracy
-F1-score
-Precision
-Recall
-Matthews Correlation Coefficient (MCC)
-Balanced Accuracy
-Cohen's Kappa
-ROC-AUC where supported
-System Metrics
-Training time
-Inference time
-Execution time
-Throughput
-Average CPU utilization
-Peak CPU utilization
-RAM before execution
-RAM after execution
-RAM delta
-Peak heap usage
-Model size
-Practical space-complexity estimate
-Statistical Analysis
+## Performance Metrics
 
-The UCF Dashboard can be used for empirical model comparison and may include:
+### UCF metrics
 
-Welch's t-test
-Mann-Whitney U test
-One-way ANOVA
-Kruskal-Wallis test
-Levene's test
-Correlation analysis
-Model-wise averages
-Heatmaps
-Distribution box plots
-Comparative bar charts
+  Metric   Meaning
+  -------- -----------------------------
+  `p(S)`   Stability-related measure
+  `p(D)`   Determinism-related measure
+  `f(u)`   UCF score
+  `TC`     Total complexity
+  `R`      Complexity remainder
+  `f(t)`   Time component
+  `g(M)`   Memory component
+  Steps    Execution steps
 
-Statistical conclusions should be based on sufficient repeated experiments and the assumptions of the selected statistical test.
+### ML metrics
 
-Explainable AI
+-   Accuracy
+-   F1-score
+-   Precision
+-   Recall
+-   MCC
+-   Balanced Accuracy
+-   Cohen's Kappa
+-   ROC-AUC where supported
 
-The XAI component is designed to support model interpretation using techniques such as:
+### System metrics
 
-SHAP
-LIME
+-   Training time
+-   Inference time
+-   Throughput
+-   Average CPU
+-   Peak CPU
+-   RAM before/after
+-   RAM delta
+-   Peak heap
+-   Model size
+-   Space-complexity estimate
 
-The purpose is to investigate feature contributions and make machine-learning model behavior more understandable.
+## Statistical Analysis
 
-Reproducibility
+The UCF Dashboard can be used for empirical model comparison and may
+include:
+
+-   Welch's t-test
+-   Mann-Whitney U test
+-   One-way ANOVA
+-   Kruskal-Wallis test
+-   Levene's test
+-   Correlation analysis
+-   Model-wise averages
+-   Heatmaps
+-   Distribution box plots
+-   Comparative bar charts
+
+Statistical conclusions should be based on sufficient repeated
+experiments and the assumptions of the selected statistical test.
+
+## Explainable AI
+
+The XAI component is designed to support model interpretation using
+techniques such as:
+
+-   SHAP
+-   LIME
+
+The purpose is to help investigate feature contributions and make model
+behavior more understandable.
+
+## Reproducibility
 
 For thesis experiments, record:
 
+``` text
 Experiment ID
 Date
 Dataset
@@ -374,137 +375,119 @@ CPU usage
 Memory usage
 UCF metrics
 Accuracy
-Precision
-Recall
 F1-score
 Other evaluation metrics
 Hardware
-Operating system
-Python version
 Software environment
-Experiment configuration
+```
 
+Use the same preprocessing, dataset split, hardware conditions, and
+experiment settings when comparing models.
 
-Use the same preprocessing, dataset split, hardware conditions, software environment, and experiment settings when comparing models.
+## Troubleshooting
 
-Troubleshooting
-ModuleNotFoundError: No module named 'algorithms'
+### `ModuleNotFoundError: No module named 'algorithms'`
 
 Make sure you are running Streamlit from the project root and that:
 
+``` text
 algorithms/
     __init__.py
-
+```
 
 exists.
 
 Run:
 
-python -m streamlit run app.py
+``` bash
+streamlit run streamlit_app.py
+```
 
+Do not run the application from inside `gui/`.
 
-Do not run the application from inside gui/.
-
-Dependency Errors
+### Dependency errors
 
 Activate the virtual environment and run:
 
+``` bash
 python -m pip install --upgrade pip
 pip install -r requirements.txt
+```
 
-Dataset Errors
+### Dataset errors
 
-Check the following:
+Check the file format, encoding, target column, missing values, and
+available memory.
 
-File format
-File encoding
-Target column
-Missing values
-Feature types
-Available memory
-Dataset size
+### MNIST download errors
 
-For custom CSV files, verify that the selected target column exists.
+The MNIST option may require internet access. If it fails, use Iris,
+Wine, Breast Cancer, Digits, Synthetic Dataset, or another available
+dataset.
 
-MNIST Download Errors
+### XAI errors
 
-The MNIST option may require internet access.
+Verify that the required XAI packages are installed and that the
+selected model is compatible with the explanation method.
 
-If it fails, use:
-
-Iris
-Wine
-Breast Cancer
-Digits
-Synthetic Dataset
-Another available local dataset
-XAI Errors
-
-Verify that:
-
-Required XAI packages are installed.
-The selected model is compatible with the explanation method.
-The dataset contains valid feature values.
-The selected XAI method supports the model type.
-Security
+## Security
 
 Do not hard-code credentials:
 
+``` python
 api_key = "secret-value"
-
+```
 
 Use environment variables instead:
 
+``` python
 import os
 
 api_key = os.getenv("OPENAI_API_KEY")
+```
 
+Keep `.env` excluded by `.gitignore`.
 
-Keep .env excluded from Git:
-
-.env
-
-
-Never upload API keys, passwords, tokens, or other private credentials to GitHub.
-
-Development Guidelines
+## Development Guidelines
 
 Keep responsibilities separated:
 
+``` text
 Streamlit UI
     ↓
-GUI Page
+GUI page
     ↓
-Experiment / Service Logic
+Experiment/service logic
     ↓
-Algorithm or ML Model
+Algorithm or ML model
     ↓
 Profiler / UCF
     ↓
 Results
     ↓
 Visualization
+```
 
-
-Avoid placing large computational functions directly inside Streamlit page files.
+Avoid placing large computational functions directly inside Streamlit
+page files.
 
 When adding a new algorithm or model:
 
-Implement it in the appropriate algorithm/model module.
-Test it independently.
-Connect it to the experiment runner.
-Add it to the appropriate UI selection.
-Verify profiling and UCF results.
-Verify statistical calculations where applicable.
-Verify charts and visualizations.
-Verify saved experiment results.
-Update the documentation.
-Research Context
+1.  Implement it in the appropriate algorithm/model module.
+2.  Test it independently.
+3.  Connect it to the experiment runner.
+4.  Add it to the appropriate UI selection.
+5.  Verify profiling and UCF results.
+6.  Verify charts and saved results.
 
-This system is intended to support master's-level research into practical computational complexity and algorithm/model performance.
+## Research Context
+
+This system is intended to support master's-level research into
+practical computational complexity and algorithm/model performance.
 
 The platform is designed to help connect:
 
+``` text
 Theoretical Complexity
         +
 Empirical Execution Behavior
@@ -514,92 +497,57 @@ Machine Learning Performance
 Explainability
         ↓
 Practical Algorithm Analysis
+```
 
+## Limitations
 
-The system provides an experimental environment for studying the relationship between theoretical complexity and observed computational behavior.
+-   Execution time can vary with operating-system and background
+    processes.
+-   CPU and memory measurements are hardware/system dependent.
+-   Dataset characteristics can strongly affect ML performance.
+-   Different algorithms may require different preprocessing.
+-   UCF is an empirical framework implemented by this project and should
+    be interpreted within its defined methodology.
+-   Big-O and empirical measurements describe different aspects of
+    algorithm behavior.
+-   XAI explanations depend on the selected method and model.
 
-Limitations
-Execution time can vary with operating-system activity and background processes.
-CPU measurements are hardware and system dependent.
-Memory measurements are hardware and system dependent.
-Dataset characteristics can strongly affect machine-learning performance.
-Different algorithms and models may require different preprocessing.
-Different hardware configurations may produce different empirical results.
-UCF is an empirical framework implemented by this project and should be interpreted within its defined methodology.
-UCF does not replace formal asymptotic complexity analysis.
-Big-O and empirical measurements describe different aspects of algorithm behavior.
-XAI explanations depend on the selected model, dataset, and explanation method.
-Statistical conclusions depend on the number and quality of repeated experiments.
-Future Development
+## Future Development
 
 Possible future improvements include:
 
-Additional classical algorithms
-Additional machine-learning models
-Deep-learning models
-GPU profiling
-Larger automated benchmarking
-Experiment-history database
-Automated PDF reports
-Automated Excel/CSV reports
-More XAI methods
-Cloud/distributed experiments
-Expanded AutoML functionality
-Additional statistical validation
-Reproducible experiment configuration
-Automated experiment pipelines
-Author
+-   Additional classical algorithms
+-   Additional ML/deep-learning models
+-   GPU profiling
+-   Larger automated benchmarking
+-   Experiment-history database
+-   Automated PDF/Excel reports
+-   More XAI methods
+-   Cloud/distributed experiments
+-   Expanded AutoML functionality
+-   Additional statistical validation
 
-Aqib Ali Buriro
+## Author
 
+**Aqib Ali Buriro**
 Master of Data Science
-Mehran University of Engineering and Technology
+Mehran University of Engineering and Technology\
 Jamshoro, Sindh, Pakistan
 
-Supervisors
-Dr. Bushra Naz
-Dr. Sammer Zai
-License
+### Supervisors
 
-This project is licensed under the MIT License.
+-   Dr. Bushra Naz
+-   Dr. Sammer Zai
 
-See the LICENSE file for the complete license text.
+## Quick Start
 
-Citation
-
-If this project contributes to academic research, please cite the associated thesis, research paper, or repository.
-
-Aqib Ali Buriro.
-AI-Based Algorithmic Analyzer (UCF).
-Mehran University of Engineering and Technology.
-Jamshoro, Sindh, Pakistan.
-
-
-A formal BibTeX citation can be added when the associated research publication or thesis citation details are finalized.
-
-Acknowledgments
-
-This project was developed as part of master's-level research in Data Science at Mehran University of Engineering and Technology, Jamshoro.
-
-Special acknowledgment is given to the project supervisors:
-
-Dr. Bushra Naz
-Dr. Sammer Zai
-Quick Start
-git clone <YOUR-GITHUB-REPOSITORY-URL>
+``` bash
 cd AI-Based-Algorithmic-Analyzer
-
 python -m venv .venv
-
-# Windows
-.venv\Scripts\activate
-
-# Linux/macOS
-# source .venv/bin/activate
-
+.venv\Scriptsctivate
 pip install -r requirements.txt
+streamlit run streamlit_app.py
+```
 
-python -m streamlit run app.py
-
-
-Then open the Streamlit application and select an analysis module from the sidebar.
+Then select an analysis module from the Streamlit sidebar.
+#
