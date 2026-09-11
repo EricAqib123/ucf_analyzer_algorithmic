@@ -32,12 +32,12 @@ ROUTES = {
 "UCF Dashboard": ucf_dashboard.render,
 "Model Comparison": model_comparison.render,
 "Performance Metrics": performance_metrics.render,
-"UCF VS BigO Analysis": ucf_vs_bigo.render,
 "Explainable AI": explainable_ai.render,
-"About": about.render,
+"UCF VS BigO Analysis": ucf_vs_bigo.render,
 "AutoML Selection": automl_selection.render,
 "Advanced Visualizations": advanced_visualizations.render,
 "UCF Formula Lab": ucf_formula_lab.render,
+"About": about.render,
 }
 
 def main():
@@ -45,11 +45,16 @@ configure_page()
 apply_global_style()
 init_session_state()
 render_header()
-page = render_sidebar()
 
 ```
+page = render_sidebar()
+
 if page in ROUTES:
-    ROUTES[page]()
+    try:
+        ROUTES[page]()
+    except Exception as error:
+        st.error("An error occurred while loading this page.")
+        st.exception(error)
 else:
     st.error("Unknown page selected: " + str(page))
 ```
