@@ -18,7 +18,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 IMG_DIR = PROJECT_ROOT / "img"
 
 LOGO_PATH = IMG_DIR / "logo.png"
-LOGO1_PATH = IMG_DIR / "logo1.png"
+LOGO1_PATH = IMG_DIR / "LOGO1.png"
 
 
 # ============================================================
