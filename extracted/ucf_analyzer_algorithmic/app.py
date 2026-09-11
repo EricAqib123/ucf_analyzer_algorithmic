@@ -56,7 +56,7 @@ if page in ROUTES:
         st.exception(error)
 else:
     st.error("Unknown page selected: " + str(page))
-```
 
-if **name** == "**main**":
-main()
+
+if name == "main":
+    main()
