@@ -1,11 +1,13 @@
 import warnings
 import streamlit as st
+
 from gui.layout import (
-configure_page, 
-render_header, 
-render_sidebar, 
+configure_page,
+render_header,
+render_sidebar,
 apply_global_style,
 )
+
 from gui.state import init_session_state
 from gui.pages import home
 from gui.pages import classical_algorithm
