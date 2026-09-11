@@ -1,15 +1,7 @@
 import warnings
 import streamlit as st
-
-from gui.layout import (
-configure_page,
-render_header,
-render_sidebar,
-apply_global_style,
-)
-
+from gui.layout import  configure_page, render_header, render_sidebar, apply_global_style,
 from gui.state import init_session_state
-
 from gui.pages import home
 from gui.pages import classical_algorithm
 from gui.pages import machine_learning
@@ -26,18 +18,18 @@ from gui.pages import ucf_formula_lab
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 
 ROUTES = {
-"Home": home.render,
-"Classical Algorithm": classical_algorithm.render,
-"Machine Learning": machine_learning.render,
-"UCF Dashboard": ucf_dashboard.render,
-"Model Comparison": model_comparison.render,
-"Performance Metrics": performance_metrics.render,
-"Explainable AI": explainable_ai.render,
-"UCF VS BigO Analysis": ucf_vs_bigo.render,
-"AutoML Selection": automl_selection.render,
-"Advanced Visualizations": advanced_visualizations.render,
-"UCF Formula Lab": ucf_formula_lab.render,
-"About": about.render,
+    "Home": home.render,
+    "Classical Algorithm": classical_algorithm.render,
+    "Machine Learning": machine_learning.render,
+    "UCF Dashboard": ucf_dashboard.render,
+    "Model Comparison": model_comparison.render,
+    "Performance Metrics": performance_metrics.render,
+    "Explainable AI": explainable_ai.render,
+    "UCF VS BigO Analysis": ucf_vs_bigo.render,
+    "AutoML Selection": automl_selection.render,
+    "Advanced Visualizations": advanced_visualizations.render,
+    "UCF Formula Lab": ucf_formula_lab.render,
+    "About": about.render,
 }
 
 def main():
