@@ -44,7 +44,7 @@ def main():
     configure_page()
     apply_global_style()
     init_session_state()
-     render_header()
+    render_header()
 
 
 page = render_sidebar()
