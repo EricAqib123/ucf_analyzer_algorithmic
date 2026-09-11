@@ -9,18 +9,18 @@ apply_global_style,
 )
 
 from gui.state import init_session_state
-from gui.pages import home
-from gui.pages import classical_algorithm
-from gui.pages import machine_learning
-from gui.pages import ucf_dashboard
-from gui.pages import model_comparison
-from gui.pages import performance_metrics
-from gui.pages import ucf_vs_bigo
-from gui.pages import explainable_ai
-from gui.pages import about
-from gui.pages import automl_selection
-from gui.pages import advanced_visualizations
-from gui.pages import ucf_formula_lab
+import gui.pages.home as home
+import gui.pages.classical_algorithm as classical_algorithm
+import gui.pages.machine_learning as machine_learning
+import gui.pages.ucf_dashboard as ucf_dashboard
+import gui.pages.model_comparison as model_comparison
+import gui.pages.performance_metrics as performance_metrics
+import gui.pages.ucf_vs_bigo as ucf_vs_bigo
+import gui.pages.explainable_ai as explainable_ai
+import gui.pages.about as about
+import gui.pages.automl_selection as automl_selection
+import gui.pages.advanced_visualizations as advanced_visualizations
+import gui.pages.ucf_formula_lab as ucf_formula_lab
 
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 
