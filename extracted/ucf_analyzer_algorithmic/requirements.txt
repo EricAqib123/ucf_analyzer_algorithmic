@@ -14,3 +14,11 @@ scipy
 joblib
 openpyxl
 Pillow
+io
+random
+os 
+pathlib
+tracemalloc
+warnings
+time
+math
