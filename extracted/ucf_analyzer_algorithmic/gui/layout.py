@@ -1,17 +1,24 @@
 from pathlib import Path
+
 import streamlit as st
 
-# Find the project root.
+# ---------------------------------------------------------
 
-# layout.py is inside: project/gui/layout.py
+# PROJECT PATHS
+
+# ---------------------------------------------------------
 
 PROJECT_ROOT = Path(**file**).resolve().parent.parent
 
-# Logo location:
+IMG_DIR = PROJECT_ROOT / "img"
 
-# project/img/logo.png
+LOGO_PATH = IMG_DIR / "logo.png"
 
-LOGO_PATH = PROJECT_ROOT / "img" / "logo.png"
+# ---------------------------------------------------------
+
+# PAGE NAMES
+
+# ---------------------------------------------------------
 
 PAGES = (
 "Home",
@@ -28,20 +35,42 @@ PAGES = (
 "About",
 )
 
+# ---------------------------------------------------------
+
+# PAGE CONFIGURATION
+
+# ---------------------------------------------------------
+
 def configure_page():
-"""Configure Streamlit page settings."""
+"""
+Configure Streamlit page settings.
+"""
 
 ```
+# Use the logo only if it actually exists.
+if LOGO_PATH.exists():
+    page_icon = str(LOGO_PATH)
+else:
+    page_icon = "🧠"
+
 st.set_page_config(
     page_title="AI-Based Algorithmic Analyzer (UCF Model)",
-    page_icon=str(LOGO_PATH),
+    page_icon=page_icon,
     layout="wide",
     initial_sidebar_state="expanded",
 )
 ```
 
+# ---------------------------------------------------------
+
+# HEADER
+
+# ---------------------------------------------------------
+
 def render_header():
-"""Render the application header."""
+"""
+Render the application header.
+"""
 
 ```
 col1, col2, col3 = st.columns([1, 4, 1])
@@ -85,8 +114,16 @@ with col3:
 st.markdown("---")
 ```
 
+# ---------------------------------------------------------
+
+# SIDEBAR
+
+# ---------------------------------------------------------
+
 def render_sidebar():
-"""Render the sidebar navigation."""
+"""
+Render sidebar navigation.
+"""
 
 ```
 if LOGO_PATH.exists():
@@ -102,24 +139,36 @@ selected_page = st.sidebar.radio(
 return selected_page
 ```
 
+# ---------------------------------------------------------
+
+# GLOBAL CSS
+
+# ---------------------------------------------------------
+
 def apply_global_style():
-"""Apply global CSS styling."""
+"""
+Apply application-wide CSS.
+"""
 
 ```
 st.markdown(
     """
     <style>
+
     [data-testid="stSidebar"] {
         background-color: #f5f5f5;
     }
 
-    h1, h2, h3 {
+    h1,
+    h2,
+    h3 {
         color: #003366;
     }
 
     .stButton > button {
         border-radius: 8px;
     }
+
     </style>
     """,
     unsafe_allow_html=True,
