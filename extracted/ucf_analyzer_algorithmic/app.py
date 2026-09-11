@@ -46,7 +46,6 @@ def main():
     init_session_state()
     render_header()
 
-
 page = render_sidebar()
 
 if page in ROUTES:
