@@ -1,4 +1,5 @@
 <p align="center"> <img src="extracted/ucf_analyzer_algorithmic/img/main.png" alt="AI-Based Algorithmic Analyzer — Unified Complexity Function" width="300"> </p> <p align="center"> <strong>Analyze algorithms and machine-learning models through practical performance, complexity, and explainability.</strong><br> Combine empirical execution profiling with the Unified Complexity Function (UCF), classical complexity analysis, ML evaluation, and Explainable AI. </p> <p align="center"> <img src="https://img.shields.io/badge/Streamlit-UI-C4522A" alt="Streamlit"> <img src="https://img.shields.io/badge/Python-3.x-3776AB" alt="Python"> <img src="https://img.shields.io/badge/UCF-Experimental-8A6A52" alt="UCF"> <img src="https://img.shields.io/badge/ML-13%20Models-1A8763" alt="Machine learning models"> <img src="https://img.shields.io/badge/XAI-SHAP%20%7C%20LIME-B4790E" alt="Explainable AI"> </p> <p align="center"> <a href="#quick-start">Quick start</a> · <a href="#how-it-works">How it works</a> · <a href="#ucf-model">UCF model</a> · <a href="#machine-learning-analysis">ML analysis</a> · <a href="#project-map">Project map</a> · <a href="#research-context">Research context</a> </p>
+
 Introduction
 AI-Based Algorithmic Analyzer (UCF) is a Streamlit-based academic research and experimental platform for studying the practical performance and computational behavior of classical algorithms and machine-learning models.
 
@@ -65,8 +66,6 @@ Explainable AI results
 How it works
 The intended analysis pipeline connects theoretical concepts with empirical experimentation:
 
-%%{init: {"theme": "base", "themeVariables": {"background": "#FBF3EC", "primaryColor": "#F3D9C2", "primaryTextColor": "#241A12", "primaryBorderColor": "#C4522A", "lineColor": "#8A6A52", "secondaryColor": "#F3E4D4", "tertiaryColor": "#FBF3EC"}}}%%
-flowchart LR
     A[Problem / Dataset] --> B[Algorithm or ML Model]
     B --> C[Experiment Runner]
     C --> D[Performance Profiler]
@@ -132,7 +131,6 @@ The exact interpretation of these components depends on the implementation and e
 UCF and Big-O
 UCF and Big-O describe different aspects of algorithm behavior.
 
-%%{init: {"theme": "base", "themeVariables": {"background": "#FBF3EC", "primaryColor": "#F3D9C2", "primaryTextColor": "#241A12", "primaryBorderColor": "#C4522A", "lineColor": "#8A6A52", "secondaryColor": "#F3E4D4", "tertiaryColor": "#FBF3EC"}}}%%
 flowchart TD
     A[Algorithm / Model] --> B[Formal Analysis]
     A --> C[Empirical Execution]
@@ -347,7 +345,6 @@ SHAP
 LIME
 The goal is to investigate feature contributions and make machine-learning behavior easier to understand.
 
-%%{init: {"theme": "base", "themeVariables": {"background": "#FBF3EC", "primaryColor": "#F3D9C2", "primaryTextColor": "#241A12", "primaryBorderColor": "#C4522A", "lineColor": "#8A6A52", "secondaryColor": "#F3E4D4", "tertiaryColor": "#FBF3EC"}}}%%
 flowchart LR
     A[Trained Model] --> B[XAI Engine]
     B --> C[Feature Contributions]
@@ -361,7 +358,7 @@ XAI explanations depend on the selected model, dataset, preprocessing pipeline, 
 Project Map
 The repository is organized into separate layers for the user interface, experiments, algorithms, profiling, UCF calculations, machine learning, datasets, and explainability.
 
-AI-Based-Algorithmic-Analyzer/
+extracted/ucf_analyzer_algorithmic/
 │
 ├── app.py
 ├── main.py
