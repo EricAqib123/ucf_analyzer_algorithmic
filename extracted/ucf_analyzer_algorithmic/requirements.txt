@@ -10,3 +10,7 @@ plotly
 seaborn
 xgboost
 lightgbm
+scipy
+joblib
+openpyxl
+Pillow
