@@ -5,7 +5,7 @@ from pathlib import Path
 
 # .../ucf_analyzer_algorithmic/
 
-PROJECT_ROOT = Path(**file**).resolve().parent.parent
+PROJECT_ROOT = Path(file).resolve().parent.parent
 
 IMG_DIR = PROJECT_ROOT / "img"
 
@@ -28,54 +28,48 @@ PAGES = (
 )
 
 def configure_page():
-st.set_page_config(
-page_title="AI-Based Algorithmic Analyzer (UCF Model)",
-page_icon=str(LOGO1_PATH) if LOGO1_PATH.exists() else "🧠",
-layout="wide",
-)
+    st.set_page_config(
+    page_title="AI-Based Algorithmic Analyzer (UCF Model)",
+    page_icon=str(LOGO1_PATH) if LOGO1_PATH.exists() else "🧠",
+    layout="wide",
+    )
 
 def render_header():
-col1, col2, col3 = st.columns([1, 4, 1])
+    col1, col2, col3 = st.columns([1, 4, 1])
+    with col1:
+        if LOGO_PATH.exists():
+            st.image(str(LOGO_PATH), width=80)
+    with col2:
+        st.markdown(
+            "<h1 style='text-align:center;'>"
+            "AI-Based Algorithmic Analyzer(UCF)"
+            "</h1>",
+             unsafe_allow_html=True,
+        )
 
-```
-with col1:
-    if LOGO_PATH.exists():
-        st.image(str(LOGO_PATH), width=80)
+        st.markdown(
+            "<h4 style='text-align:center;'>"
+            "Mehran University of Engineering & Technology"
+            "</h4>",
+             unsafe_allow_html=True,
+        )
 
-with col2:
-    st.markdown(
-        "<h1 style='text-align:center;'>"
-        "AI-Based Algorithmic Analyzer(UCF)"
-        "</h1>",
-        unsafe_allow_html=True,
-    )
-
-    st.markdown(
-        "<h4 style='text-align:center;'>"
-        "Mehran University of Engineering & Technology"
-        "</h4>",
-        unsafe_allow_html=True,
-    )
-
-    st.markdown(
-        "<h5 style='text-align:center;'>"
-        "Jamshoro, Sindh, Pakistan"
-        "</h5>",
-        unsafe_allow_html=True,
-    )
-
-with col3:
-    if LOGO_PATH.exists():
-        st.image(str(LOGO_PATH), width=80)
-
-st.markdown("---")
-```
-
+        st.markdown(
+            "<h5 style='text-align:center;'>"
+            "Jamshoro, Sindh, Pakistan"
+            "</h5>",
+            unsafe_allow_html=True,
+        )
+    with col3:
+        if LOGO_PATH.exists():
+            st.image(str(LOGO_PATH), width=80)
+            st.markdown("---")
+            
 def render_sidebar():
-if LOGO1_PATH.exists():
-st.sidebar.image(str(LOGO1_PATH), width=100)
+    if LOGO1_PATH.exists():
+        st.sidebar.image(str(LOGO1_PATH), width=100)
 
-```
+
 st.sidebar.title("AI Algorithm Analyzer")
 
 return st.sidebar.radio(
@@ -85,18 +79,15 @@ return st.sidebar.radio(
 ```
 
 def apply_global_style():
-st.markdown(
-""" <style>
-.sidebar .sidebar-content {
-background-color: #f5f5f5;
-}
-
-```
-    h1, h2, h3 {
+    st.markdown(
+        """ <style>
+        .sidebar .sidebar-content {
+        background-color: #f5f5f5;
+        }
+        h1, h2, h3 {
         color: #003366;
-    }
+        }
     </style>
     """,
     unsafe_allow_html=True,
 )
-```
