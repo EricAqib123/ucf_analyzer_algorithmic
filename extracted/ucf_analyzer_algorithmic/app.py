@@ -1,9 +1,5 @@
 import warnings
 import streamlit as st
-import os
-
-print("Current directory:", os.getcwd())
-print("Files:", os.listdir("gui/pages"))
 
 from gui.layout import (
 configure_page,
