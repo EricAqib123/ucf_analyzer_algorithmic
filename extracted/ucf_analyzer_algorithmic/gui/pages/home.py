@@ -86,26 +86,30 @@ def render():
         st.subheader("📦 Download Dataset")
         st.write("Download the CIC-IDS dataset to use with the Machine Learning phase.")
 
-        dataset_path = "./dataset.rar"
+        from pathlib import Path
+
+        # home.py is located at: project/gui/pages/home.py
+        # Go up three levels to reach the project root.
+        PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+        dataset_path = PROJECT_ROOT / "dataset.rar"
+
         try:
-            import os
-            if os.path.exists(dataset_path):
+            if dataset_path.is_file():
                 with open(dataset_path, "rb") as f_ds:
                     dataset_bytes = f_ds.read()
+
                 st.download_button(
                     label="⬇️ Download CIC-IDS Dataset (.rar)",
                     data=dataset_bytes,
                     file_name="dataset.rar",
-                    mime="application/octet-stream"
+                    mime="application/vnd.rar",
                 )
             else:
                 st.info(
-                    "Dataset file (`dataset.rar`) not found in the project root. "
-                    "Place it alongside `app.py` to enable this download."
+                    "Dataset file (`dataset.rar`) was not found. "
+                    "Make sure it is uploaded to the project root alongside `app.py`."
                 )
+
         except Exception as e:
             st.warning(f"Could not load dataset file: {e}")
 
-    # =====================================================
-    # 1️⃣ CLASSICAL ALGORITHM
-    # =====================================================
