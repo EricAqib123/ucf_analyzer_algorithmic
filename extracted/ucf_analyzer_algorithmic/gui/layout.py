@@ -4,7 +4,7 @@ from pathlib import Path
 # Project root:
 #extracted/ucf_analyzer_algorithmic/
 
-PROJECT_ROOT = Path(file).resolve().parent.parent
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 IMG_DIR = PROJECT_ROOT / "img"
 
