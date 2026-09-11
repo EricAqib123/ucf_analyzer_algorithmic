@@ -23,12 +23,7 @@ from gui.pages import automl_selection
 from gui.pages import advanced_visualizations
 from gui.pages import ucf_formula_lab
 
-# Suppress numerical runtime warnings
-
-warnings.filterwarnings(
-"ignore",
-category=RuntimeWarning,
-)
+warnings.filterwarnings("ignore", category=RuntimeWarning)
 
 ROUTES = {
 "Home": home.render,
@@ -50,10 +45,9 @@ configure_page()
 apply_global_style()
 init_session_state()
 render_header()
-
-```
 page = render_sidebar()
 
+```
 if page in ROUTES:
     ROUTES[page]()
 else:
