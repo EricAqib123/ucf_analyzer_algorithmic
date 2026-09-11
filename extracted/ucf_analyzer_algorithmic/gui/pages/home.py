@@ -79,7 +79,7 @@ def render():
         st.success("Use the sidebar to start experiments.")
         BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-       st.markdown("---")
+        st.markdown("---")
         st.subheader("📦 Download Dataset")
         st.write("Download the CIC-IDS dataset to use with the Machine Learning phase.")
 
