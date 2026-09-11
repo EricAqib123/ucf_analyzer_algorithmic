@@ -17,8 +17,8 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 IMG_DIR = PROJECT_ROOT / "img"
 
-LOGO_PATH = IMG_DIR / "logo.png"
-LOGO1_PATH = IMG_DIR / "LOGO1.png"
+UNVI_PATH = IMG_DIR / "logo.png"
+SIDEBAR_PATH = IMG_DIR / "LOGO1.png"
 
 
 # ============================================================
@@ -48,7 +48,7 @@ PAGES = (
 def configure_page():
     st.set_page_config(
         page_title="AI-Based Algorithmic Analyzer (UCF Model)",
-        page_icon=str(LOGO1_PATH) if LOGO1_PATH.exists() else "🧠",
+        page_icon=str(UNVI_PATH) if UNVI_PATH.exists() else "🧠",
         layout="wide",
         initial_sidebar_state="expanded",
     )
@@ -62,8 +62,8 @@ def render_header():
     col1, col2, col3 = st.columns([1, 4, 1])
 
     with col1:
-        if LOGO_PATH.exists():
-            st.image(str(LOGO_PATH), width=80)
+        if UNVI_PATH.exists():
+            st.image(str(UNVI_PATH), width=80)
 
     with col2:
         st.markdown(
@@ -107,8 +107,8 @@ def render_sidebar():
     # Sidebar should ALWAYS be created.
     # The logo is optional.
 
-    if LOGO_PATH.exists():
-        st.sidebar.image(str(LOGO_PATH), width=100)
+    if SIDEBAR_PATH.exists():
+        st.sidebar.image(str(SIDEBAR_PATH), width=100)
 
     st.sidebar.title("AI Algorithm Analyzer")
 
