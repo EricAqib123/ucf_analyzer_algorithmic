@@ -2,8 +2,7 @@ import streamlit as st
 from pathlib import Path
 
 # Project root:
-
-# .../ucf_analyzer_algorithmic/
+#extracted/ucf_analyzer_algorithmic/
 
 PROJECT_ROOT = Path(file).resolve().parent.parent
 
@@ -13,18 +12,18 @@ LOGO_PATH = IMG_DIR / "logo.png"
 LOGO1_PATH = IMG_DIR / "logo1.png"
 
 PAGES = (
-"Home",
-"Classical Algorithm",
-"Machine Learning",
-"UCF Dashboard",
-"Model Comparison",
-"Performance Metrics",
-"Explainable AI",
-"UCF VS BigO Analysis",
-"AutoML Selection",
-"Advanced Visualizations",
-"UCF Formula Lab",
-"About",
+    "Home",
+    "Classical Algorithm",
+    "Machine Learning",
+    "UCF Dashboard",
+    "Model Comparison",
+    "Performance Metrics",
+    "Explainable AI",
+    "UCF VS BigO Analysis",
+    "AutoML Selection",
+    "Advanced Visualizations",
+    "UCF Formula Lab", 
+    "About",
 )
 
 def configure_page():
