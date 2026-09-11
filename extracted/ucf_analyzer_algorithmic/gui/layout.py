@@ -48,7 +48,7 @@ PAGES = (
 def configure_page():
     st.set_page_config(
         page_title="AI-Based Algorithmic Analyzer (UCF Model)",
-        page_icon=str(UNVI_PATH) if UNVI_PATH.exists() else "🧠",
+        page_icon=str(SIDEBAR_PATH) if SIDEBAR_PATH.exists() else "🧠",
         layout="wide",
         initial_sidebar_state="expanded",
     )
