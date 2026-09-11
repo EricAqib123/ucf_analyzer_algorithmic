@@ -126,7 +126,7 @@ About
 ## Project Structure
 
 ``` text
-AI-Based-Algorithmic-Analyzer/
+extracted/ucf_analyzer_aglorithmic/
 │
 ├── app.py
 ├── main.py
