@@ -8,7 +8,7 @@ import streamlit as st
 
 # ---------------------------------------------------------
 
-PROJECT_ROOT = Path(**file**).resolve().parent.parent
+PROJECT_ROOT = Path(file).resolve().parent.parent
 
 IMG_DIR = PROJECT_ROOT / "img"
 
@@ -46,7 +46,6 @@ def configure_page():
 Configure Streamlit page settings.
 """
 
-```
 # Use the logo only if it actually exists.
 if LOGO_PATH.exists():
     page_icon = str(LOGO_PATH)
@@ -59,7 +58,7 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
-```
+
 
 # ---------------------------------------------------------
 
@@ -112,7 +111,7 @@ with col3:
         st.image(str(LOGO_PATH), width=80)
 
 st.markdown("---")
-```
+
 
 # ---------------------------------------------------------
 
@@ -173,4 +172,4 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-```
+
