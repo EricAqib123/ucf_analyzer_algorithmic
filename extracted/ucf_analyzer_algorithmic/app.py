@@ -20,7 +20,8 @@ import gui.pages.explainable_ai as explainable_ai
 import gui.pages.about as about
 import gui.pages.automl_selection as automl_selection
 import gui.pages.advanced_visualizations as advanced_visualizations
-import gui.pages.ucf_formula_lab as ucf_formula_lab
+# import gui.pages.ucf_formula_lab as ucf_formula_lab
+from gui.pages import ucf_formula_lab
 
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 
