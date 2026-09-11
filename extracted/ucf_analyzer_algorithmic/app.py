@@ -7,6 +7,7 @@ render_header,
 render_sidebar,
 apply_global_style,
 )
+
 from gui.state import init_session_state
 
 from gui.pages import home
@@ -39,6 +40,8 @@ warnings.filterwarnings(
 category=RuntimeWarning,
 message=_msg,
 )
+
+# Page routing
 
 ROUTES = {
 "Home": home.render,
