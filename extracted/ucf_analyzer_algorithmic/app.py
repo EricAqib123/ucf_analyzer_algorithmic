@@ -13,18 +13,18 @@ apply_global_style,
 )
 
 from gui.state import init_session_state
-import ./gui.pages.home as home
-import ./gui.pages.classical_algorithm as classical_algorithm
-import ./gui.pages.machine_learning as machine_learning
-import ./gui.pages.ucf_dashboard as ucf_dashboard
-import ./gui.pages.model_comparison as model_comparison
-import ./gui.pages.performance_metrics as performance_metrics
-import ./gui.pages.ucf_vs_bigo as ucf_vs_bigo
-import ./gui.pages.explainable_ai as explainable_ai
-import ./gui.pages.about as about
-import ./gui.pages.automl_selection as automl_selection
-import ./gui.pages.advanced_visualizations as advanced_visualizations
-import ./gui.pages.ucf_formula_lab as ucf_formula_lab
+import ../gui.pages.home as home
+import ../gui.pages.classical_algorithm as classical_algorithm
+import ../gui.pages.machine_learning as machine_learning
+import ../gui.pages.ucf_dashboard as ucf_dashboard
+import ../gui.pages.model_comparison as model_comparison
+import ../gui.pages.performance_metrics as performance_metrics
+import ../gui.pages.ucf_vs_bigo as ucf_vs_bigo
+import ../gui.pages.explainable_ai as explainable_ai
+import ../gui.pages.about as about
+import ../gui.pages.automl_selection as automl_selection
+import ../gui.pages.advanced_visualizations as advanced_visualizations
+import ../gui.pages.ucf_formula_lab as ucf_formula_lab
 
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 
