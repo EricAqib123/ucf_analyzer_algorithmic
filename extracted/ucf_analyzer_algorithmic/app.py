@@ -44,8 +44,16 @@ def main():
     apply_global_style()
     init_session_state()
     render_header()
+    
     page = render_sidebar()
-    ROUTES[page]()
+    if page in ROUTES:
+        try:
+            ROUTES[page]()
+        except Exception as error:
+            st.error("An error occurred while loading this page.")
+            st.exception(error)
+    else:
+        st.error("Unknown page selected: " + str(page))
   
 
 
