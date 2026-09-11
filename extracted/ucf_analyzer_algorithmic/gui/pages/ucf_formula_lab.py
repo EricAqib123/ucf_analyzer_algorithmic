@@ -32,7 +32,7 @@ from algorithms.ml_models import (
 )
 from algorithms.dataset_loader import generate_dataset
 from algorithms.cic_loader import load_cic_ids
-from gui.utlis as utlis
+from gui import utlis
 
 
 def render():
