@@ -68,15 +68,8 @@ def render_header():
 def render_sidebar():
     if LOGO1_PATH.exists():
         st.sidebar.image(str(LOGO1_PATH), width=100)
-
-
-st.sidebar.title("AI Algorithm Analyzer")
-
-return st.sidebar.radio(
-    "Select Phase:",
-    PAGES,
-)
-
+        st.sidebar.title("AI Algorithm Analyzer")
+        return st.sidebar.radio("Select Phase:",PAGES,)
 
 def apply_global_style():
     st.markdown(
