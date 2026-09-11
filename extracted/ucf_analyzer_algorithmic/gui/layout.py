@@ -76,7 +76,7 @@ return st.sidebar.radio(
     "Select Phase:",
     PAGES,
 )
-```
+
 
 def apply_global_style():
     st.markdown(
