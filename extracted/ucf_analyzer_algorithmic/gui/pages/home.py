@@ -85,7 +85,7 @@ def render():
         st.subheader("📦 Download Dataset")
         st.write("Download the CIC-IDS dataset to use with the Machine Learning phase.")
 
-        dataset_path = "dataset.rar"
+        dataset_path = "extracted/ucf_analyzer_algorithmic/dataset.rar"
         try:
             import os
             if os.path.exists(dataset_path):
