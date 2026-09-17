@@ -41,7 +41,7 @@ def render():
         st.header("Welcome to AI-Based Algorithmic Analyzer")
 
         st.write("""
-                 This system is being designed and developed by Aqib Ali Buriro Student of Mehran University of Engineering and Technology under the supervision Dr Bushra Naz and Dr. Sammer Zai
+                 This system is designed and developed by Aqib Ali Buriro; Student of Mehran University of Engineering and Technology under the supervision Dr Bushra Naz and Dr. Sammer Zai
 
     This platform implements the **UCF (Unified Complexity Framework)** for analyzing 
     both **Classical Algorithms** and **Machine Learning Models**.
@@ -61,13 +61,13 @@ def render():
         st.subheader("System Architecture")
 
         st.info("""
-    1️⃣ Classical Algorithm Analysis  
-    2️⃣ Machine Learning Model Evaluation  
-    3️⃣ UCF Metric Computation  
-    4️⃣ Statistical Comparison  
-    5️⃣ Explainable AI (SHAP + LIME)  
-    6️⃣ Big-O vs Practical Performance  
-    """)
+        1️⃣ Classical Algorithm Analysis  
+        2️⃣ Machine Learning Model Evaluation  
+        3️⃣ UCF Metric Computation  
+        4️⃣ Statistical Comparison  
+        5️⃣ Explainable AI (SHAP + LIME)  
+        6️⃣ Big-O vs Practical Performance  
+        """)
 
         st.subheader("Modules Available")
 
