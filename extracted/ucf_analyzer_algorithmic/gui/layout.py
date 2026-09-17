@@ -130,23 +130,76 @@ def apply_global_style():
         """
         <style>
 
-        h1, h2, h3 {
+        /* =====================================================
+           LIGHT MODE
+        ===================================================== */
+
+        /* Main headings */
+        h1, h2, h3, h4, h5 {
             color: #003366;
         }
 
-        /* Sidebar - LIGHT MODE */
+        /* Sidebar background */
         [data-testid="stSidebar"] {
             background-color: #f5f5f5;
         }
 
-        /* Sidebar - DARK MODE */
+        /* Sidebar text */
+        [data-testid="stSidebar"] * {
+            color: #1f1f1f;
+        }
+
+        /* Sidebar title */
+        [data-testid="stSidebar"] h1,
+        [data-testid="stSidebar"] h2,
+        [data-testid="stSidebar"] h3 {
+            color: #003366;
+        }
+
+        /* Selected radio option */
+        [data-testid="stSidebar"] input:checked + div {
+            color: #003366;
+            font-weight: 600;
+        }
+
+
+        /* =====================================================
+           DARK MODE
+        ===================================================== */
+
         @media (prefers-color-scheme: dark) {
-            [data-testid="stSidebar"] {
-                background-color: #121212;
+
+            /* Main headings */
+            h1, h2, h3, h4, h5 {
+                color: #66b3ff;
             }
 
+            /* Sidebar background */
+            [data-testid="stSidebar"] {
+                background-color: #121820;
+            }
+
+            /* All sidebar text */
             [data-testid="stSidebar"] * {
-                color: #121212;
+                color: #f1f5f9;
+            }
+
+            /* Sidebar title */
+            [data-testid="stSidebar"] h1,
+            [data-testid="stSidebar"] h2,
+            [data-testid="stSidebar"] h3 {
+                color: #66b3ff;
+            }
+
+            /* Sidebar radio labels */
+            [data-testid="stSidebar"] label {
+                color: #f1f5f9;
+            }
+
+            /* Selected radio option */
+            [data-testid="stSidebar"] input:checked + div {
+                color: #66b3ff;
+                font-weight: 600;
             }
         }
 
