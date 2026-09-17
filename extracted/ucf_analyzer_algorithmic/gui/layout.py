@@ -78,7 +78,7 @@ def render_header():
         st.markdown(
             """
             <h4 style="text-align:center;">
-                Mehran University of Engineering & Technology
+               Unified Complexity Function (UCF) Framework
             </h4>
             """,
             unsafe_allow_html=True,
@@ -87,7 +87,7 @@ def render_header():
         st.markdown(
             """
             <h5 style="text-align:center;">
-                Jamshoro, Sindh, Pakistan
+               Research & Development: Aqib Ali Buriro
             </h5>
             """,
             unsafe_allow_html=True,
