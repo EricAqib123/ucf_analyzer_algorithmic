@@ -142,8 +142,8 @@ def apply_global_style():
 
         /* Sidebar - DARK MODE */
         @media (prefers-color-scheme: dark) {
-            [data-testid="stSidebar"] {
-                background-color: #121212;
+        [data-testid="stSidebar"] {
+              background-color: #121212;
             }
 
             [data-testid="stSidebar"] * {
