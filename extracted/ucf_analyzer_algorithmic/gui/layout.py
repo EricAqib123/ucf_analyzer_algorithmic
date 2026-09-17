@@ -133,7 +133,6 @@ def apply_global_style():
         h1, h2, h3 {
             color: #003366;
         }
-        
 
         /* Sidebar - LIGHT MODE */
         [data-testid="stSidebar"] {
@@ -142,15 +141,14 @@ def apply_global_style():
 
         /* Sidebar - DARK MODE */
         @media (prefers-color-scheme: dark) {
-        [data-testid="stSidebar"] {
-              background-color: #121212;
+            [data-testid="stSidebar"] {
+                background-color: #121212;
             }
 
             [data-testid="stSidebar"] * {
                 color: #ffffff;
             }
         }
-        
 
         </style>
         """,
