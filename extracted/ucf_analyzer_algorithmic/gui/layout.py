@@ -146,7 +146,7 @@ def apply_global_style():
             }
 
             [data-testid="stSidebar"] * {
-                color: #ffffff;
+                color: #121212;
             }
         }
 
