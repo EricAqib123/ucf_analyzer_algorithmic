@@ -17,7 +17,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 IMG_DIR = PROJECT_ROOT / "img"
 
-UNVI_PATH = IMG_DIR / "main.png"
+UNVI_PATH = IMG_DIR / "logo.png"
 SIDEBAR_PATH = IMG_DIR / "main.png"
 
 
